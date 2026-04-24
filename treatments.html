@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Our Treatments — My Dear Skin Ayurveda | Kandy Sri Lanka</title>
+  <meta name="description" content="Explore all treatments offered at My Dear Skin (Pvt) Ltd — arthritis, diabetes, high blood pressure, sinusitis, paralysis, gastritis and more using traditional Hela Wedakama.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .all-treatments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px; margin-top: 50px;
+    }
+    .atc {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 32px 28px;
+      position: relative; overflow: hidden;
+      transition: var(--transition);
+    }
+    .atc:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--gold); }
+    .atc-num {
+      position: absolute; top: 16px; right: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; color: rgba(201,168,76,0.12);
+      font-weight: 700; line-height: 1;
+    }
+    .atc-icon { font-size: 2rem; margin-bottom: 14px; }
+    .atc-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; color: var(--maroon);
+      margin-bottom: 10px;
+    }
+    .atc-name-si, .atc-name-ta {
+      font-size: 0.88rem; color: var(--brown); margin-bottom: 10px; font-style: italic;
+    }
+    .atc-desc { font-size: 0.86rem; color: var(--text-mid); line-height: 1.75; }
+  </style>
+</head>
+<body>
+
+<div id="announcement-banner">
+  <span class="banner-icon">🛡</span>
+  <span data-i18n="banner-text">Shanthi Wedakama — Traditional Sri Lankan Ayurveda Healing</span>
+  <button id="close-banner">✕</button>
+</div>
+
+<header id="site-header">
+  <a href="index.html" class="logo-wrap">
+    <div class="logo-icon">🌿</div>
+    <div class="logo-text-wrap">
+      <div class="logo-name">My Dear Skin (Pvt) Ltd</div>
+      <div class="logo-sub">Traditional Ayurveda · Kandy</div>
+    </div>
+  </a>
+  <div class="header-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="si">සිං</button>
+      <button class="lang-btn" data-lang="ta">தமி</button>
+    </div>
+    <button id="menu-btn"><span class="menu-bars"><i class="fa-solid fa-bars"></i></span> <span data-i18n="menu-label">Menu</span></button>
+    <button id="book-btn" data-i18n="book-now">Book Now</button>
+  </div>
+</header>
+
+<div id="nav-overlay">
+  <div id="nav-backdrop"></div>
+  <nav id="nav-panel">
+    <div class="nav-header">
+      <span class="nav-logo-text">My Dear Skin (Pvt) Ltd</span>
+      <button id="close-nav">✕</button>
+    </div>
+    <div class="nav-search"><input type="text" placeholder="Type to search..."></div>
+    <ul class="nav-links">
+      <li><a href="index.html" data-i18n="nav-home">Home</a></li>
+      <li><a href="about.html" data-i18n="nav-about">About Us</a></li>
+      <li><a href="doctor.html" data-i18n="nav-doctor">Our Doctor</a></li>
+      <li><a href="treatments.html" class="active" data-i18n="nav-treatments">Our Treatments</a></li>
+      <li><a href="index.html#packages" data-i18n="nav-packages">Our Packages</a></li>
+      <li><a href="index.html#gallery" data-i18n="nav-gallery">Gallery</a></li>
+      <li><a href="index.html#testimonials" data-i18n="nav-testimonials">Testimonials</a></li>
+      <li><a href="contact.html" data-i18n="nav-contact">Contact Us</a></li>
+    </ul>
+  </nav>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('images/treatment_therapy.png');"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <h1 class="page-hero-title" data-i18n="nav-treatments">Our Treatments</h1>
+    <div class="breadcrumb">Home <span>›</span> <span data-i18n="nav-treatments">Our Treatments</span></div>
+  </div>
+</div>
+
+<!-- Intro -->
+<section class="section">
+  <div class="container text-center">
+    <p class="section-eyebrow" data-i18n="treat-eyebrow">Our Treatments</p>
+    <h2 class="section-title" data-i18n="treat-title">Conditions We Treat</h2>
+    <div class="divider"></div>
+    <p class="section-desc" style="margin:0 auto" data-i18n="treat-desc">Using traditional Hela Wedakama plant-based medicine, we address a wide range of chronic and acute conditions at their root cause.</p>
+
+    <div class="all-treatments-grid">
+
+      <div class="atc reveal reveal-delay-1">
+        <span class="atc-num">01</span>
+        <div class="atc-icon">🦴</div>
+        <h3 class="atc-name" data-i18n="t1-name">Arthritis &amp; Joint Care</h3>
+        <p class="atc-name-si">ආතරයිටිස් හා සන්ධි රෝග · மூட்டு வாதம்</p>
+        <p class="atc-desc" data-i18n="t1-desc">Natural relief for arthritis, cartilage degeneration, and chronic joint pain through herbal oils and treatments.</p>
+      </div>
+
+      <div class="atc reveal reveal-delay-2">
+        <span class="atc-num">02</span>
+        <div class="atc-icon">❤️</div>
+        <h3 class="atc-name" data-i18n="t2-name">Cardiovascular Health</h3>
+        <p class="atc-name-si">අධි රුධිර පීඩනය · உயர் இரத்த அழுத்தம்</p>
+        <p class="atc-desc" data-i18n="t2-desc">Traditional remedies for high blood pressure, fatty heart, and cholesterol management.</p>
+      </div>
+
+      <div class="atc reveal reveal-delay-3">
+        <span class="atc-num">03</span>
+        <div class="atc-icon">🔥</div>
+        <h3 class="atc-name" data-i18n="t3-name">Gastritis &amp; Digestive</h3>
+        <p class="atc-name-si">ගැස්ට්‍රයිටිස් · இரைப்பை அழற்சி</p>
+        <p class="atc-desc" data-i18n="t3-desc">Effective Ayurvedic treatment for gastritis, acidity, and all digestive disorders.</p>
+      </div>
+
+      <div class="atc reveal reveal-delay-1">
+        <span class="atc-num">04</span>
+        <div class="atc-icon">🚶</div>
+        <h3 class="atc-name" data-i18n="t4-name">Paralysis &amp; Nerve Care</h3>
+        <p class="atc-name-si">අංශභාග · பக்கவாதம்</p>
+        <p class="atc-desc" data-i18n="t4-desc">Specialized traditional treatments for hemiplegia, paralysis, and neurological conditions.</p>
+      </div>
+
+      <div class="atc reveal reveal-delay-2">
+        <span class="atc-num">05</span>
+        <div class="atc-icon">🌬</div>
+        <h3 class="atc-name" data-i18n="t5-name">Sinusitis &amp; Respiratory</h3>
+        <p class="atc-name-si">පිනස හා සෙම · சைனஸ் மற்றும் சுவாசம்</p>
+        <p class="atc-desc" data-i18n="t5-desc">Relief from sinusitis, chronic cough, and respiratory ailments using herbal therapies.</p>
+      </div>
+
+      <div class="atc reveal reveal-delay-3">
+        <span class="atc-num">06</span>
+        <div class="atc-icon">🧠</div>
+        <h3 class="atc-name" data-i18n="t6-name">Headaches &amp; Migraines</h3>
+        <p class="atc-name-si">හිස කැක්කුම · தலைவலி</p>
+        <p class="atc-desc" data-i18n="t6-desc">Traditional head treatments and herbal medicines to relieve chronic headaches and migraines.</p>
+      </div>
+
+      <div class="atc reveal reveal-delay-1">
+        <span class="atc-num">07</span>
+        <div class="atc-icon">💧</div>
+        <h3 class="atc-name" data-i18n="t7-name">Diabetes Management</h3>
+        <p class="atc-name-si">මධු මේහය · நீரிழிவு</p>
+        <p class="atc-desc" data-i18n="t7-desc">Holistic Ayurvedic approach to managing blood sugar levels and diabetic complications.</p>
+      </div>
+
+      <div class="atc reveal reveal-delay-2">
+        <span class="atc-num">08</span>
+        <div class="atc-icon">👶</div>
+        <h3 class="atc-name" data-i18n="t8-name">Children's Health</h3>
+        <p class="atc-name-si">ළදරු රත රෝග · குழந்தை நோய்கள்</p>
+        <p class="atc-desc" data-i18n="t8-desc">Gentle traditional remedies for childhood fever diseases and paediatric conditions.</p>
+      </div>
+
+      <div class="atc reveal reveal-delay-3">
+        <span class="atc-num">09</span>
+        <div class="atc-icon">💪</div>
+        <h3 class="atc-name" data-i18n="t9-name">Rheumatic Diseases</h3>
+        <p class="atc-name-si">වාත රෝග · வாத நோய்கள்</p>
+        <p class="atc-desc" data-i18n="t9-desc">Treatment for vata-related rheumatic conditions using time-tested traditional medicine.</p>
+      </div>
+
+      <div class="atc reveal reveal-delay-1">
+        <span class="atc-num">10</span>
+        <div class="atc-icon">🎗</div>
+        <h3 class="atc-name" data-i18n="t10-name">Cancer Support</h3>
+        <p class="atc-name-si">පිළිකා සහාය · புற்றுநோய் ஆதரவு</p>
+        <p class="atc-desc" data-i18n="t10-desc">Complementary Ayurvedic care and support treatment for cancer patients.</p>
+      </div>
+
+      <div class="atc reveal reveal-delay-2">
+        <span class="atc-num">11</span>
+        <div class="atc-icon">🦠</div>
+        <h3 class="atc-name" data-i18n="t11-name">Mumps &amp; Infections</h3>
+        <p class="atc-name-si">මූනු ගල් · காஞ்சாமாடு</p>
+        <p class="atc-desc" data-i18n="t11-desc">Traditional treatment for mumps and infectious diseases using Hela Wedakama.</p>
+      </div>
+
+      <div class="atc reveal reveal-delay-3">
+        <span class="atc-num">12</span>
+        <div class="atc-icon">🌟</div>
+        <h3 class="atc-name" data-i18n="t12-name">General Wellness</h3>
+        <p class="atc-name-si">සර්වාංග රෝග · பொது ஆரோக்கியம்</p>
+        <p class="atc-desc" data-i18n="t12-desc">Comprehensive care for all systemic diseases and full-body wellness restoration.</p>
+      </div>
+
+    </div>
+
+    <div style="margin-top:50px;padding:36px;background:linear-gradient(135deg,var(--maroon),#7A1515);text-align:center;" class="reveal">
+      <p style="color:var(--gold-light);font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;">Ready to Begin Your Healing Journey?</p>
+      <h3 style="color:var(--white);font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:20px;">Book a Consultation Today</h3>
+      <a href="contact.html" class="btn-solid" style="display:inline-block;padding:14px 40px;" data-i18n="book-now">Book Now</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo-name">My Dear Skin (Pvt) Ltd</div>
+      <div class="footer-logo-sub">esthetics · Traditional Ayurveda</div>
+      <p data-i18n="footer-desc">Traditional Sri Lankan Ayurveda healing — Ampitiya, Kandy.</p>
+      <div class="footer-social">
+        <a href="#" class="soc-btn"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="soc-btn"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/94705142900" class="soc-btn"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title" data-i18n="footer-links-title">Quick Links</p>
+      <ul class="footer-links">
+        <li><a href="index.html" data-i18n="nav-home">Home</a></li>
+        <li><a href="about.html" data-i18n="nav-about">About Us</a></li>
+        <li><a href="doctor.html" data-i18n="nav-doctor">Our Doctor</a></li>
+        <li><a href="treatments.html" data-i18n="nav-treatments">Our Treatments</a></li>
+        <li><a href="contact.html" data-i18n="nav-contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title" data-i18n="footer-contact-title">Contact Details</p>
+      <div class="footer-contact-item"><span class="fci-icon"><i class="fa-solid fa-location-dot"></i></span><span>No 225, Galthanna Road, Ampitiya, Kandy, Sri Lanka</span></div>
+      <div class="footer-contact-item"><span class="fci-icon"><i class="fa-solid fa-phone"></i></span><span>+94 70 514 2900<br>+94 77 531 2419</span></div>
+      <div class="footer-contact-item"><span class="fci-icon"><i class="fa-solid fa-clock"></i></span><span>Mon–Sat: 8:00 AM – 4:30 PM</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer-copy">© 2026 My Dear Skin (Pvt) Ltd. All Rights Reserved.</span>
+  </div>
+</footer>
+<div id="design-credit">
+  <span class="dc-made">Website Designed &amp; Developed by</span>
+  <a href="https://web.facebook.com/profile.php?id=100082101311247" target="_blank" rel="noopener" class="dc-brand">
+    <span class="dc-logo">INFINITE DESIGN</span>
+    <span class="dc-sep">·</span>
+    <span class="dc-tagline">Design is intelligent made visible</span>
+  </a>
+  <span class="dc-sep">·</span>
+  <span class="dc-phone">078 971 4912</span>
+</div>
+
+<a id="whatsapp-float" href="https://wa.me/94705142900" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+<script src="js/main.js"></script>
+</body>
+</html>
