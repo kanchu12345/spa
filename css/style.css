@@ -97,6 +97,12 @@ h1, h2, h3, h4, .font-serif {
 
 /* Logo */
 .logo-wrap { display: flex; align-items: center; gap: 12px; }
+.main-logo {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
 .logo-icon {
   width: 56px; height: 56px;
   background: linear-gradient(135deg, var(--maroon), var(--brown));
