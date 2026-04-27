@@ -1057,28 +1057,31 @@ h1, h2, h3, h4, .font-serif {
   .doctor-badge { right: 0; bottom: 0; }
 }
 
-/* ── Mobile (≤768px) ── */
+/* ── Mobile (≤ 768px) ── */
 @media (max-width: 768px) {
   /* Header */
   #site-header {
     padding: 10px 14px;
     flex-wrap: nowrap;
-    gap: 0;
+    justify-content: space-between;
+    gap: 10px;
   }
   #site-header.scrolled { padding: 8px 14px; }
 
+  .header-right { gap: 6px; }
+
   /* Logo — shrink on mobile */
-  .logo-icon { width: 42px; height: 42px; font-size: 1.2rem; }
-  .logo-name { font-size: 0.82rem; }
+  .main-logo { height: 40px; }
+  .logo-name { font-size: 0.8rem; white-space: nowrap; }
   .logo-sub  { display: none; }
 
   /* Language switcher — compact */
-  .lang-switcher { padding: 0 6px; gap: 3px; }
-  .lang-btn { padding: 4px 7px; font-size: 0.62rem; }
+  .lang-switcher { padding: 0 4px; gap: 2px; }
+  .lang-btn { padding: 4px 6px; font-size: 0.65rem; }
 
   /* Buttons — compact */
-  #menu-btn  { padding: 11px 14px; font-size: 0.72rem; gap: 5px; }
-  #book-btn  { padding: 11px 14px; font-size: 0.72rem; letter-spacing: 0.06em; }
+  #menu-btn  { padding: 10px 12px; font-size: 0.75rem; gap: 5px; }
+  #book-btn  { display: none; } /* Hide book btn on header to save space */
 
   /* Announcement banner */
   #announcement-banner {
@@ -1207,3 +1210,4 @@ h1, h2, h3, h4, .font-serif {
   .section { padding: 44px 0; }
   .treatments-grid { gap: 16px; }
 }
+
