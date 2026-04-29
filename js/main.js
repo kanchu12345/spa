@@ -7,7 +7,7 @@
 const translations = {
   en: {
     // Banner
-    'banner-text': 'Shanthi Wedakama — Traditional Sri Lankan Ayurveda Healing',
+    'banner-text': '<span class="creative-font">Shanthi Weda Madhura</span> — Traditional Sri Lankan Ayurveda Healing',
 
     // Header
     'nav-home': 'Home',
@@ -143,6 +143,13 @@ const translations = {
     // Gallery
     'gal-eyebrow': 'Our Gallery',
     'gal-title': 'Moments of Healing & Serenity',
+    'view-full-gallery': 'View Full Gallery',
+    'filter-all': 'All',
+    'filter-gallery': 'Gallery',
+    'filter-doctor': 'Doctor & Awards',
+    'filter-treatments': 'Treatments',
+    'filter-products': 'Products',
+    'filter-general': 'General',
 
     // Testimonials
     'test-eyebrow': 'Patient Stories',
@@ -228,7 +235,7 @@ const translations = {
   },
 
   si: {
-    'banner-text': 'ශාන්ති වෙදකම — ශ්‍රී ලංකාවේ පාරම්පරික ආයුර්වේද ප්‍රතිකාර',
+    'banner-text': '<span class="creative-font">Shanthi Weda Madhura</span> — ශ්‍රී ලංකාවේ පාරම්පරික ආයුර්වේද ප්‍රතිකාර',
     'nav-home': 'මුල් පිටුව',
     'nav-about': 'අප ගැන',
     'nav-doctor': 'අපේ වෛද්‍ය',
@@ -427,7 +434,7 @@ const translations = {
   },
 
   ta: {
-    'banner-text': 'சாந்தி வெதகம — பாரம்பரிய இலங்கை ஆயுர்வேத சிகிச்சை',
+    'banner-text': '<span class="creative-font">Shanthi Weda Madhura</span> — பாரம்பரிய இலங்கை ஆயுர்வேத சிகிச்சை',
     'nav-home': 'முகப்பு',
     'nav-about': 'எங்களைப் பற்றி',
     'nav-doctor': 'எங்கள் மருத்துவர்',
@@ -638,11 +645,10 @@ function applyLanguage(lang) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (t[key] !== undefined) {
-      // Handle multi-line text (use <br> or pre-line)
       if (t[key].includes('\n')) {
         el.innerHTML = t[key].replace(/\n/g, '<br>');
       } else {
-        el.textContent = t[key];
+        el.innerHTML = t[key];
       }
     }
   });
@@ -910,6 +916,33 @@ function initTestimonials() {
   startAutoSlide();
 }
 
+function initGalleryFilters() {
+  const filters = document.querySelectorAll('.pg-filter');
+  const items = document.querySelectorAll('.public-gal-item');
+  
+  if (filters.length === 0 || items.length === 0) return;
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Remove active from all
+      filters.forEach(f => f.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filterCat = btn.getAttribute('data-cat');
+
+      // Show/Hide items
+      items.forEach(item => {
+        const itemCat = item.getAttribute('data-category');
+        if (filterCat === 'all' || itemCat === filterCat) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+}
+
 // ── Init ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
@@ -923,6 +956,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initActiveNavLink();
   initPackageToggles();
   initTestimonials();
+  initGalleryFilters();
 
   // Restore saved language
   const saved = localStorage.getItem('mds-lang') || 'en';
