@@ -1,5 +1,5 @@
 /* =============================================
-   MY DEAR SKIN — main.js
+   SHANTHI WEDA MADHURA — main.js
    Language switching + UI behaviours
    ============================================= */
 
@@ -38,7 +38,7 @@ const translations = {
     // About
     'about-eyebrow': 'About Us',
     'about-title': 'Traditional Ayurveda in the Heart of Kandy',
-    'about-desc': 'My Dear Skin (Pvt) Ltd is a registered traditional Ayurveda wellness centre located in the lush hills of Ampitiya, Kandy. Founded by Dr. Mangalika Rajasekara — a Justice of the Peace and licensed Ayurvedic physician — our practice is rooted in centuries-old Sri Lankan healing traditions known as Hela Wedakama.',
+    'about-desc': 'Shanthi Weda Madhura is a registered traditional Ayurveda wellness centre located in the lush hills of Ampitiya, Kandy. Founded by Dr. Mangalika Rajasekara — a Justice of the Peace and licensed Ayurvedic physician — our practice is rooted in centuries-old Sri Lankan healing traditions known as Hela Wedakama.',
     'about-badge': 'Registered Ayurveda\nWellness Centre',
     'hl1-title': 'Ancient Sri Lankan Heritage',
     'hl1-sub': 'Centuries of traditional wisdom',
@@ -168,7 +168,7 @@ const translations = {
     'test7-text': "The Shanthi Wedakama rituals combined with the medicine brought me so much peace of mind during my battle with depression and anxiety.",
     'test7-name': 'Anoma Jayasinghe',
     'test7-loc': 'Colombo, Sri Lanka',
-    'test8-text': "My son had severe eczema. After trying dozens of creams, the natural blood-purifying medicine from My Dear Skin cleared his skin completely.",
+    'test8-text': "My son had severe eczema. After trying dozens of creams, the natural blood-purifying medicine from Shanthi Weda Madhura cleared his skin completely.",
     'test8-name': 'Ruwan Ekanayake',
     'test8-loc': 'Kandy, Sri Lanka',
     'test9-text': "I was scheduled for knee replacement surgery, but decided to try Ayurveda first. After 21 days here, I can walk without pain. Simply amazing.",
@@ -212,18 +212,18 @@ const translations = {
     'contact-eyebrow': 'Find Us',
     'contact-title': 'Visit Our Clinic',
     'ci1-label': 'Address',
-    'ci1-value': 'Shanthi Weda Madura, No 225, Galthanna Road, Kanda, Ampitiya, Kandy, Sri Lanka',
+    'ci1-value': 'Shanthi Weda Madhura, No 225, Galthanna Road, Kanda, Ampitiya, Kandy, Sri Lanka',
     'ci2-label': 'Phone Numbers',
     'ci2-value': '+94 70 514 2900\n+94 71 578 1269\n+94 77 531 2419',
     'ci3-label': 'Open Hours',
     'ci3-value': 'Monday – Saturday\n8:00 AM – 4:30 PM',
-    'map-label': 'Shanthi Weda Madura, No 225, Galthanna Road, Ampitiya, Kandy',
+    'map-label': 'Shanthi Weda Madhura, No 225, Galthanna Road, Ampitiya, Kandy',
 
     // Footer
-    'footer-desc': 'My Dear Skin (Pvt) Ltd provides traditional Sri Lankan Ayurveda healing rooted in the ancient Hela Wedakama and Shanthi Wedakama traditions, Ampitiya, Kandy.',
+    'footer-desc': 'Shanthi Weda Madhura provides traditional Sri Lankan Ayurveda healing rooted in the ancient Hela Wedakama and Shanthi Wedakama traditions, Ampitiya, Kandy.',
     'footer-links-title': 'Quick Links',
     'footer-contact-title': 'Contact Details',
-    'footer-copy': '© 2026 My Dear Skin (Pvt) Ltd. All Rights Reserved. Reg No: PV00313811',
+    'footer-copy': '© 2026 Shanthi Weda Madhura. All Rights Reserved. Reg No: PV00313811',
     'footer-jp': 'Justice of the Peace · Reg No: 16351',
   },
 

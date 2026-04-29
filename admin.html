@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — Shanthi Weda Madhura</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Toast Notification -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Login Section -->
+  <section id="login-section" class="admin-section active">
+    <div class="login-card">
+      <img src="images/logo.png" alt="Shanthi Weda Madhura Logo" class="admin-logo">
+      <h2>Admin Panel Login</h2>
+      <p>Please enter your GitHub Personal Access Token to authenticate.</p>
+      <input type="password" id="github-token" placeholder="ghp_xxxxxxxxxxxx" class="admin-input">
+      <button id="login-btn" class="primary-btn">Authenticate</button>
+      <div id="login-error" class="error-msg"></div>
+    </div>
+  </section>
+
+  <!-- Dashboard Section -->
+  <section id="dashboard-section" class="admin-section">
+    <header class="admin-header">
+      <div class="admin-header-content">
+        <div class="brand">
+          <img src="images/logo.png" alt="Logo" class="header-logo">
+          <h1>Image Manager</h1>
+        </div>
+        <button id="logout-btn" class="secondary-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="controls-bar">
+        <h3>Website Images</h3>
+        <button id="refresh-btn" class="secondary-btn"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+      </div>
+      
+      <div id="loading-spinner" class="spinner-container">
+        <div class="spinner"></div>
+        <p>Loading images...</p>
+      </div>
+
+      <div id="image-grid" class="image-grid">
+        <!-- Images will be injected here -->
+      </div>
+    </main>
+  </section>
+
+  <!-- Upload Modal -->
+  <div id="upload-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Replace Image</h3>
+        <button id="close-modal" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtitle">Replacing: <strong id="target-filename"></strong></p>
+        <div class="upload-area" id="upload-area">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <p>Drag & Drop a new image here or click to browse</p>
+          <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg" hidden>
+        </div>
+        <div id="preview-container" class="preview-container hidden">
+          <img id="image-preview" src="" alt="Preview">
+          <p id="file-details"></p>
+          <button id="remove-preview" class="remove-btn"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="cancel-upload" class="secondary-btn">Cancel</button>
+        <button id="confirm-upload" class="primary-btn" disabled>Upload & Replace</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
