@@ -75,11 +75,11 @@ h1, h2, h3, h4, .font-serif {
 #close-banner:hover { opacity: 1; transform: rotate(90deg); }
 .creative-font {
   font-family: 'Cormorant Garamond', 'Noto Sans Sinhala', 'Noto Sans Tamil', serif;
-  font-size: 1.25em;
+  font-size: 1.4em;
   font-style: italic;
   font-weight: 700;
   letter-spacing: 0.05em;
-  text-transform: capitalize;
+  text-transform: none !important;
   color: var(--gold-light);
 }
 
