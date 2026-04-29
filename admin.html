@@ -34,26 +34,109 @@
       <div class="admin-header-content">
         <div class="brand">
           <img src="images/logo.png" alt="Logo" class="header-logo">
-          <h1>Image Manager</h1>
+          <h1>Admin Dashboard</h1>
         </div>
         <button id="logout-btn" class="secondary-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
       </div>
     </header>
 
     <main class="admin-main">
-      <div class="controls-bar">
-        <h3>Website Images</h3>
-        <button id="refresh-btn" class="secondary-btn"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
-      </div>
       
-      <div id="loading-spinner" class="spinner-container">
-        <div class="spinner"></div>
-        <p>Loading images...</p>
+      <!-- Main Tabs -->
+      <div class="main-tabs">
+        <button class="main-tab active" data-target="tab-images"><i class="fa-regular fa-image"></i> Image Manager</button>
+        <button class="main-tab" data-target="tab-content"><i class="fa-solid fa-pen-to-square"></i> Content Editor</button>
       </div>
 
-      <div id="image-grid" class="image-grid">
-        <!-- Images will be injected here -->
+      <!-- IMAGES TAB -->
+      <div id="tab-images" class="tab-content active">
+        <div class="controls-bar">
+          <h3>Website Images</h3>
+          <div class="category-filters" id="image-categories">
+            <button class="cat-btn active" data-cat="all">All</button>
+            <button class="cat-btn" data-cat="gallery">Gallery</button>
+            <button class="cat-btn" data-cat="doctor">Doctor & Awards</button>
+            <button class="cat-btn" data-cat="treatments">Treatments</button>
+            <button class="cat-btn" data-cat="products">Products</button>
+            <button class="cat-btn" data-cat="general">General</button>
+          </div>
+          <button id="refresh-btn" class="secondary-btn"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+        </div>
+        
+        <div id="loading-spinner" class="spinner-container">
+          <div class="spinner"></div>
+          <p>Loading images...</p>
+        </div>
+
+        <div id="image-grid" class="image-grid">
+          <!-- Images will be injected here -->
+        </div>
       </div>
+
+      <!-- CONTENT TAB -->
+      <div id="tab-content" class="tab-content">
+        <div class="controls-bar">
+          <h3>Treatments & Packages</h3>
+          <div>
+            <button id="refresh-content-btn" class="secondary-btn"><i class="fa-solid fa-rotate-right"></i> Reload</button>
+            <button id="save-content-btn" class="primary-btn"><i class="fa-solid fa-cloud-arrow-up"></i> Save to Website</button>
+          </div>
+        </div>
+
+        <div id="content-spinner" class="spinner-container" style="display: none;">
+          <div class="spinner"></div>
+          <p>Loading content data...</p>
+        </div>
+
+        <div class="content-editor-layout">
+          <!-- Sidebar for selecting item -->
+          <div class="content-sidebar">
+            <h4>Treatments</h4>
+            <div id="treatments-list" class="item-list"></div>
+            <h4 style="margin-top: 20px;">Packages</h4>
+            <div id="packages-list" class="item-list"></div>
+          </div>
+
+          <!-- Main editor area -->
+          <div class="content-editor-area">
+            <div id="editor-placeholder" class="editor-placeholder">
+              <i class="fa-solid fa-pen-nib"></i>
+              <p>Select a treatment or package from the left to edit its content.</p>
+            </div>
+            
+            <div id="editor-form" class="editor-form hidden">
+              <h3 id="editor-title">Editing: ...</h3>
+              
+              <div class="lang-section">
+                <h4><span class="lang-badge">EN</span> English</h4>
+                <label>Title / Name</label>
+                <input type="text" id="edit-en-title" class="admin-input">
+                <label>Description</label>
+                <textarea id="edit-en-desc" class="admin-textarea"></textarea>
+              </div>
+
+              <div class="lang-section">
+                <h4><span class="lang-badge">SI</span> Sinhala</h4>
+                <label>Title / Name</label>
+                <input type="text" id="edit-si-title" class="admin-input">
+                <label>Description</label>
+                <textarea id="edit-si-desc" class="admin-textarea"></textarea>
+              </div>
+
+              <div class="lang-section">
+                <h4><span class="lang-badge">TA</span> Tamil</h4>
+                <label>Title / Name</label>
+                <input type="text" id="edit-ta-title" class="admin-input">
+                <label>Description</label>
+                <textarea id="edit-ta-desc" class="admin-textarea"></textarea>
+              </div>
+
+              <button id="apply-local-btn" class="secondary-btn" style="width:100%">Apply Changes Locally</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </main>
   </section>
 
