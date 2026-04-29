@@ -206,8 +206,8 @@ async function loadImages() {
 function getCategory(filename) {
   const name = filename.toLowerCase();
   if (name.includes('gallery_')) return 'gallery';
-  if (name.includes('dr_') || name.includes('doctor') || name.includes('award_')) return 'doctor';
-  if (name.includes('treatment') || name.includes('herbal') || name.includes('clinic')) return 'treatments';
+  if (name.includes('dr_') || name.includes('doctor') || name.includes('award_') || name.includes('team')) return 'doctor';
+  if (name.includes('treatment') || name.includes('herb') || name.includes('clinic')) return 'treatments';
   if (name.includes('product')) return 'products';
   return 'general';
 }
