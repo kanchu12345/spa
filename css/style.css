@@ -1094,48 +1094,91 @@ h1, h2, h3, h4, .font-serif {
 
 /* ── Mobile (≤ 768px) ── */
 @media (max-width: 768px) {
-  /* Header */
+  /* Header — two-row layout on mobile */
   #site-header {
-    padding: 10px 14px;
-    flex-wrap: nowrap;
+    padding: 8px 12px;
+    flex-wrap: wrap;
     justify-content: space-between;
-    gap: 10px;
+    gap: 0;
   }
-  #site-header.scrolled { padding: 8px 14px; }
+  #site-header.scrolled { padding: 6px 12px; }
 
-  .header-right { gap: 6px; }
+  /* Logo row — takes available space, prevents overflow */
+  .logo-wrap {
+    flex: 0 1 auto;
+    min-width: 0; /* allow shrinking */
+    gap: 8px;
+  }
+  .main-logo { height: 38px; flex-shrink: 0; }
+  .logo-text-wrap {
+    min-width: 0; /* allow text truncation */
+  }
+  .logo-name {
+    font-size: 0.78rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+  .logo-sub { display: none; }
 
-  /* Logo — shrink on mobile */
-  .main-logo { height: 40px; }
-  .logo-name { font-size: 0.8rem; white-space: nowrap; }
-  .logo-sub  { display: none; }
+  /* Header right — controls stay in one row */
+  .header-right {
+    flex: 0 0 auto;
+    gap: 0;
+  }
 
-  /* Language switcher — compact */
-  .lang-switcher { padding: 0 4px; gap: 2px; }
-  .lang-btn { padding: 4px 6px; font-size: 0.65rem; }
+  /* Language switcher — tighter on mobile */
+  .lang-switcher {
+    padding: 0 6px;
+    gap: 2px;
+  }
+  .lang-btn {
+    padding: 4px 7px;
+    font-size: 0.6rem;
+    letter-spacing: 0.04em;
+  }
 
   /* Buttons — compact */
-  #menu-btn  { padding: 10px 12px; font-size: 0.75rem; gap: 5px; }
-  #book-btn  { display: none; } /* Hide book btn on header to save space */
+  #menu-btn {
+    padding: 10px 14px;
+    font-size: 0.7rem;
+    gap: 5px;
+    letter-spacing: 0.1em;
+  }
+  #book-btn { display: none; } /* Hide book btn on header to save space */
 
   /* Announcement banner */
   #announcement-banner {
-    font-size: 0.62rem;
-    padding: 8px 38px 8px 14px;
-    letter-spacing: 0.06em;
+    font-size: 0.58rem;
+    padding: 7px 36px 7px 12px;
+    letter-spacing: 0.05em;
+    gap: 8px;
+    line-height: 1.4;
+  }
+  #announcement-banner .creative-font {
+    font-size: 1.25em;
+  }
+  #close-banner {
+    right: 10px;
+    font-size: 1rem;
   }
 
   /* Hero */
   #hero { height: 100svh; min-height: 500px; }
-  .hero-content { padding: 0 18px; }
+  .hero-content { padding: 0 14px; }
+  .hero-glass-panel {
+    padding: 32px 22px;
+    border-radius: 12px;
+  }
   .hero-title {
-    font-size: clamp(1.8rem, 8vw, 2.8rem);
+    font-size: clamp(1.7rem, 7.5vw, 2.6rem);
     margin-bottom: 8px;
   }
-  .hero-subtitle { font-size: 1rem; margin-bottom: 16px; }
-  .hero-desc { font-size: 0.85rem; margin-bottom: 24px; }
+  .hero-subtitle { font-size: 0.95rem; margin-bottom: 14px; }
+  .hero-desc { font-size: 0.82rem; margin-bottom: 22px; line-height: 1.7; }
   .hero-cta { padding: 13px 28px; font-size: 0.75rem; }
-  .hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.15em; margin-bottom: 10px; }
+  .hero-eyebrow { font-size: 0.58rem; letter-spacing: 0.14em; margin-bottom: 10px; }
   .hero-scroll { display: none; }
 
   /* Credentials strip */
@@ -1222,18 +1265,31 @@ h1, h2, h3, h4, .font-serif {
 
 /* ── Small Mobile (≤480px) ── */
 @media (max-width: 480px) {
-  .logo-name { font-size: 0.75rem; }
-  .logo-icon { width: 36px; height: 36px; font-size: 1rem; }
-  #menu-btn  { padding: 10px 12px; }
-  #book-btn  { padding: 10px 10px; letter-spacing: 0; font-size: 0.68rem; }
-  .lang-btn  { padding: 3px 6px; font-size: 0.58rem; }
+  /* Header — even tighter */
+  #site-header { padding: 6px 10px; }
+  .logo-wrap { gap: 6px; }
+  .main-logo { height: 34px; }
+  .logo-name { font-size: 0.7rem; }
 
+  /* Language switcher — minimal */
+  .lang-switcher { padding: 0 4px; gap: 1px; }
+  .lang-btn { padding: 3px 5px; font-size: 0.55rem; border-radius: 2px; }
+
+  /* Menu button */
+  #menu-btn { padding: 8px 10px; font-size: 0.65rem; letter-spacing: 0.08em; }
+
+  /* Hero */
+  .hero-glass-panel { padding: 26px 18px; }
   .hero-title    { font-size: clamp(1.5rem, 7vw, 2rem); }
-  .hero-subtitle { font-size: 0.9rem; }
-  .hero-desc     { font-size: 0.8rem; display: none; } /* hide on tiny screens */
+  .hero-subtitle { font-size: 0.88rem; }
+  .hero-desc     { font-size: 0.78rem; display: none; } /* hide on tiny screens */
   .hero-cta      { padding: 12px 22px; font-size: 0.7rem; }
+  .hero-eyebrow  { font-size: 0.54rem; letter-spacing: 0.1em; }
 
+  /* Nav panel */
   #nav-panel { width: 100%; }
+
+  /* Content sections */
   .about-img-wrap img { height: 240px; }
   .doctor-img-frame img { height: 280px; }
   .gallery-grid {
@@ -1244,5 +1300,27 @@ h1, h2, h3, h4, .font-serif {
   .pkg-card { padding: 22px 16px; }
   .section { padding: 44px 0; }
   .treatments-grid { gap: 16px; }
+
+  /* Announcement banner */
+  #announcement-banner {
+    font-size: 0.52rem;
+    padding: 6px 30px 6px 10px;
+    gap: 6px;
+  }
+  #announcement-banner .creative-font {
+    font-size: 1.15em;
+  }
 }
+
+/* ── Extra Small Mobile (≤360px) — narrowest Android devices ── */
+@media (max-width: 360px) {
+  #site-header { padding: 6px 8px; }
+  .main-logo { height: 30px; }
+  .logo-text-wrap { display: none; } /* hide text completely on very narrow screens */
+  .lang-btn { padding: 3px 4px; font-size: 0.5rem; }
+  #menu-btn { padding: 8px 10px; font-size: 0.6rem; }
+  .hero-glass-panel { padding: 22px 14px; }
+  .hero-title { font-size: 1.4rem; }
+}
+
 
