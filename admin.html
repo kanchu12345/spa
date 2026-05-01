@@ -4,135 +4,256 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Panel — Shanthi Weda Madhura</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="images/logo.png">
   <link rel="stylesheet" href="css/admin.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- Toast Notification -->
   <div id="toast-container" class="toast-container"></div>
 
-  <!-- Login Section -->
+  <!-- ═══════════════════════════════════════
+       LOGIN SECTION
+  ═══════════════════════════════════════ -->
   <section id="login-section" class="admin-section active">
     <div class="login-card">
       <img src="images/logo.png" alt="Shanthi Weda Madhura Logo" class="admin-logo">
-      <h2>Admin Panel Login</h2>
-      <p>Please enter your GitHub Personal Access Token to authenticate.</p>
-      <input type="password" id="github-token" placeholder="ghp_xxxxxxxxxxxx" class="admin-input">
-      <button id="login-btn" class="primary-btn">Authenticate</button>
+      <h2>Admin Panel</h2>
+      <p class="login-subtitle">Enter your password to access the dashboard.</p>
+      <div class="input-group">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" id="password-input" placeholder="Enter password" class="admin-input" autocomplete="current-password">
+      </div>
+      <button id="login-btn" class="primary-btn full-width">
+        <i class="fa-solid fa-right-to-bracket"></i> Login
+      </button>
       <div id="login-error" class="error-msg"></div>
     </div>
   </section>
 
-  <!-- Dashboard Section -->
+  <!-- ═══════════════════════════════════════
+       DASHBOARD SECTION
+  ═══════════════════════════════════════ -->
   <section id="dashboard-section" class="admin-section">
+
+    <!-- Admin Header -->
     <header class="admin-header">
       <div class="admin-header-content">
         <div class="brand">
           <img src="images/logo.png" alt="Logo" class="header-logo">
-          <h1>Admin Dashboard</h1>
+          <div>
+            <h1>Admin Dashboard</h1>
+            <span class="header-subtitle">Shanthi Weda Madhura</span>
+          </div>
         </div>
         <button id="logout-btn" class="secondary-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
       </div>
     </header>
 
     <main class="admin-main">
-      
-      <!-- Main Tabs -->
+
+      <!-- ── Main Tabs ── -->
       <div class="main-tabs">
-        <button class="main-tab active" data-target="tab-images"><i class="fa-regular fa-image"></i> Image Manager</button>
-        <button class="main-tab" data-target="tab-content"><i class="fa-solid fa-pen-to-square"></i> Content Editor</button>
+        <button class="main-tab active" data-target="tab-overview"><i class="fa-solid fa-chart-simple"></i><span>Overview</span></button>
+        <button class="main-tab" data-target="tab-treatments"><i class="fa-solid fa-leaf"></i><span>Treatments</span></button>
+        <button class="main-tab" data-target="tab-packages"><i class="fa-solid fa-box-open"></i><span>Packages</span></button>
+        <button class="main-tab" data-target="tab-gallery"><i class="fa-regular fa-image"></i><span>Gallery</span></button>
+        <button class="main-tab" data-target="tab-settings"><i class="fa-solid fa-gear"></i><span>Settings</span></button>
       </div>
 
-      <!-- IMAGES TAB -->
-      <div id="tab-images" class="tab-content active">
-        <div class="controls-bar">
-          <h3>Website Images</h3>
-          <div class="category-filters" id="image-categories">
-            <button class="cat-btn active" data-cat="all">All</button>
-            <button class="cat-btn" data-cat="gallery">Gallery</button>
-            <button class="cat-btn" data-cat="doctor">Doctor & Awards</button>
-            <button class="cat-btn" data-cat="treatments">Treatments</button>
-            <button class="cat-btn" data-cat="products">Products</button>
-            <button class="cat-btn" data-cat="general">General</button>
+      <!-- ══════════════════════════════════
+           TAB: OVERVIEW
+      ══════════════════════════════════ -->
+      <div id="tab-overview" class="tab-content active">
+        <div class="overview-cards">
+          <div class="overview-card">
+            <div class="ov-icon"><i class="fa-solid fa-leaf"></i></div>
+            <div class="ov-info">
+              <span class="ov-number" id="ov-treatments">0</span>
+              <span class="ov-label">Treatments</span>
+            </div>
           </div>
-          <button id="refresh-btn" class="secondary-btn"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+          <div class="overview-card">
+            <div class="ov-icon pkg"><i class="fa-solid fa-box-open"></i></div>
+            <div class="ov-info">
+              <span class="ov-number" id="ov-packages">0</span>
+              <span class="ov-label">Packages</span>
+            </div>
+          </div>
+          <div class="overview-card">
+            <div class="ov-icon img"><i class="fa-regular fa-image"></i></div>
+            <div class="ov-info">
+              <span class="ov-number" id="ov-images">0</span>
+              <span class="ov-label">Images</span>
+            </div>
+          </div>
+          <div class="overview-card">
+            <div class="ov-icon lang"><i class="fa-solid fa-language"></i></div>
+            <div class="ov-info">
+              <span class="ov-number">3</span>
+              <span class="ov-label">Languages</span>
+            </div>
+          </div>
         </div>
-        
-        <div id="loading-spinner" class="spinner-container">
+
+        <div class="overview-panel">
+          <h3><i class="fa-solid fa-circle-info"></i> Quick Guide</h3>
+          <ul class="quick-guide">
+            <li><strong>Treatments</strong> — Add, edit, or remove treatment entries shown on the website.</li>
+            <li><strong>Packages</strong> — Manage retreat packages with trilingual content.</li>
+            <li><strong>Gallery</strong> — Replace website images via the GitHub repository.</li>
+            <li><strong>Settings</strong> — Configure your GitHub token for publishing and change your admin password.</li>
+          </ul>
+          <div class="github-status" id="github-status">
+            <i class="fa-brands fa-github"></i>
+            <span id="gh-status-text">GitHub: Not configured</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           TAB: TREATMENTS
+      ══════════════════════════════════ -->
+      <div id="tab-treatments" class="tab-content">
+        <div class="controls-bar">
+          <h3><i class="fa-solid fa-leaf"></i> Treatments</h3>
+          <div class="controls-right">
+            <button id="add-treatment-btn" class="primary-btn"><i class="fa-solid fa-plus"></i> Add Treatment</button>
+          </div>
+        </div>
+
+        <div class="data-table-wrap">
+          <table class="data-table" id="treatments-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name (EN)</th>
+                <th>Description (EN)</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="treatments-tbody">
+              <!-- JS injects rows -->
+            </tbody>
+          </table>
+          <div id="treatments-empty" class="empty-state hidden">
+            <i class="fa-solid fa-leaf"></i>
+            <p>No treatments found. Click "Add Treatment" to create one.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           TAB: PACKAGES
+      ══════════════════════════════════ -->
+      <div id="tab-packages" class="tab-content">
+        <div class="controls-bar">
+          <h3><i class="fa-solid fa-box-open"></i> Packages</h3>
+          <div class="controls-right">
+            <button id="add-package-btn" class="primary-btn"><i class="fa-solid fa-plus"></i> Add Package</button>
+          </div>
+        </div>
+
+        <div class="data-table-wrap">
+          <table class="data-table" id="packages-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title (EN)</th>
+                <th>Subtitle (EN)</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="packages-tbody">
+              <!-- JS injects rows -->
+            </tbody>
+          </table>
+          <div id="packages-empty" class="empty-state hidden">
+            <i class="fa-solid fa-box-open"></i>
+            <p>No packages found. Click "Add Package" to create one.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           TAB: GALLERY
+      ══════════════════════════════════ -->
+      <div id="tab-gallery" class="tab-content">
+        <div class="controls-bar">
+          <h3><i class="fa-regular fa-image"></i> Website Images</h3>
+          <div class="controls-right">
+            <div class="category-filters" id="image-categories">
+              <button class="cat-btn active" data-cat="all">All</button>
+              <button class="cat-btn" data-cat="gallery">Gallery</button>
+              <button class="cat-btn" data-cat="doctor">Doctor</button>
+              <button class="cat-btn" data-cat="treatments">Treatments</button>
+              <button class="cat-btn" data-cat="general">General</button>
+            </div>
+            <button id="refresh-images-btn" class="secondary-btn"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+          </div>
+        </div>
+
+        <div id="gallery-spinner" class="spinner-container">
           <div class="spinner"></div>
           <p>Loading images...</p>
         </div>
 
-        <div id="image-grid" class="image-grid">
-          <!-- Images will be injected here -->
+        <div id="image-grid" class="image-grid"></div>
+
+        <div id="gallery-no-token" class="empty-state hidden">
+          <i class="fa-brands fa-github"></i>
+          <p>Please configure your GitHub token in <strong>Settings</strong> to manage images.</p>
         </div>
       </div>
 
-      <!-- CONTENT TAB -->
-      <div id="tab-content" class="tab-content">
-        <div class="controls-bar">
-          <h3>Treatments & Packages</h3>
-          <div>
-            <button id="refresh-content-btn" class="secondary-btn"><i class="fa-solid fa-rotate-right"></i> Reload</button>
-            <button id="save-content-btn" class="primary-btn"><i class="fa-solid fa-cloud-arrow-up"></i> Save to Website</button>
-          </div>
-        </div>
-
-        <div id="content-spinner" class="spinner-container" style="display: none;">
-          <div class="spinner"></div>
-          <p>Loading content data...</p>
-        </div>
-
-        <div class="content-editor-layout">
-          <!-- Sidebar for selecting item -->
-          <div class="content-sidebar">
-            <h4>Treatments</h4>
-            <div id="treatments-list" class="item-list"></div>
-            <h4 style="margin-top: 20px;">Packages</h4>
-            <div id="packages-list" class="item-list"></div>
+      <!-- ══════════════════════════════════
+           TAB: SETTINGS
+      ══════════════════════════════════ -->
+      <div id="tab-settings" class="tab-content">
+        <div class="settings-grid">
+          <!-- GitHub Token -->
+          <div class="settings-card">
+            <h3><i class="fa-brands fa-github"></i> GitHub Integration</h3>
+            <p class="settings-desc">Enter your GitHub Personal Access Token to enable image management and content publishing.</p>
+            <div class="input-group">
+              <i class="fa-solid fa-key"></i>
+              <input type="password" id="settings-gh-token" placeholder="ghp_xxxxxxxxxxxx" class="admin-input">
+            </div>
+            <button id="save-gh-token-btn" class="primary-btn"><i class="fa-solid fa-floppy-disk"></i> Save Token</button>
+            <button id="test-gh-token-btn" class="secondary-btn" style="margin-left:8px;"><i class="fa-solid fa-plug"></i> Test Connection</button>
+            <div id="gh-token-status" class="status-msg"></div>
           </div>
 
-          <!-- Main editor area -->
-          <div class="content-editor-area">
-            <div id="editor-placeholder" class="editor-placeholder">
-              <i class="fa-solid fa-pen-nib"></i>
-              <p>Select a treatment or package from the left to edit its content.</p>
+          <!-- Change Password -->
+          <div class="settings-card">
+            <h3><i class="fa-solid fa-shield-halved"></i> Change Password</h3>
+            <p class="settings-desc">Update your admin panel password.</p>
+            <div class="input-group">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="current-pw" placeholder="Current password" class="admin-input">
             </div>
-            
-            <div id="editor-form" class="editor-form hidden">
-              <h3 id="editor-title">Editing: ...</h3>
-              
-              <div class="lang-section">
-                <h4><span class="lang-badge">EN</span> English</h4>
-                <label>Title / Name</label>
-                <input type="text" id="edit-en-title" class="admin-input">
-                <label>Description</label>
-                <textarea id="edit-en-desc" class="admin-textarea"></textarea>
-              </div>
-
-              <div class="lang-section">
-                <h4><span class="lang-badge">SI</span> Sinhala</h4>
-                <label>Title / Name</label>
-                <input type="text" id="edit-si-title" class="admin-input">
-                <label>Description</label>
-                <textarea id="edit-si-desc" class="admin-textarea"></textarea>
-              </div>
-
-              <div class="lang-section">
-                <h4><span class="lang-badge">TA</span> Tamil</h4>
-                <label>Title / Name</label>
-                <input type="text" id="edit-ta-title" class="admin-input">
-                <label>Description</label>
-                <textarea id="edit-ta-desc" class="admin-textarea"></textarea>
-              </div>
-
-              <button id="apply-local-btn" class="secondary-btn" style="width:100%">Apply Changes Locally</button>
+            <div class="input-group">
+              <i class="fa-solid fa-key"></i>
+              <input type="password" id="new-pw" placeholder="New password" class="admin-input">
             </div>
+            <div class="input-group">
+              <i class="fa-solid fa-check"></i>
+              <input type="password" id="confirm-pw" placeholder="Confirm new password" class="admin-input">
+            </div>
+            <button id="change-pw-btn" class="primary-btn"><i class="fa-solid fa-floppy-disk"></i> Update Password</button>
+            <div id="pw-status" class="status-msg"></div>
+          </div>
+
+          <!-- Save to Website -->
+          <div class="settings-card full-width">
+            <h3><i class="fa-solid fa-cloud-arrow-up"></i> Publish to Website</h3>
+            <p class="settings-desc">Push all local treatment & package changes to the live website via GitHub.</p>
+            <button id="publish-btn" class="primary-btn publish-btn"><i class="fa-solid fa-rocket"></i> Publish Changes</button>
+            <div id="publish-status" class="status-msg"></div>
           </div>
         </div>
       </div>
@@ -140,12 +261,129 @@
     </main>
   </section>
 
-  <!-- Upload Modal -->
+  <!-- ═══════════════════════════════════════
+       MODAL: ADD/EDIT TREATMENT
+  ═══════════════════════════════════════ -->
+  <div id="treatment-modal" class="modal-overlay">
+    <div class="modal-card modal-large">
+      <div class="modal-header">
+        <h3 id="treatment-modal-title">Add Treatment</h3>
+        <button class="close-btn" data-close="treatment-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="lang-tabs">
+          <button class="lang-tab active" data-lang-tab="en"><span class="lang-badge">EN</span> English</button>
+          <button class="lang-tab" data-lang-tab="si"><span class="lang-badge si">SI</span> Sinhala</button>
+          <button class="lang-tab" data-lang-tab="ta"><span class="lang-badge ta">TA</span> Tamil</button>
+        </div>
+
+        <div class="lang-panel active" data-lang-panel="en">
+          <label>Treatment Name <span class="required">*</span></label>
+          <input type="text" id="t-en-name" class="admin-input" placeholder="e.g. Arthritis & Joint Care">
+          <label>Description <span class="required">*</span></label>
+          <textarea id="t-en-desc" class="admin-textarea" placeholder="Describe this treatment..."></textarea>
+        </div>
+        <div class="lang-panel" data-lang-panel="si">
+          <label>Treatment Name (Sinhala)</label>
+          <input type="text" id="t-si-name" class="admin-input" placeholder="සිංහල නාමය">
+          <label>Description (Sinhala)</label>
+          <textarea id="t-si-desc" class="admin-textarea" placeholder="විස්තරය..."></textarea>
+        </div>
+        <div class="lang-panel" data-lang-panel="ta">
+          <label>Treatment Name (Tamil)</label>
+          <input type="text" id="t-ta-name" class="admin-input" placeholder="தமிழ் பெயர்">
+          <label>Description (Tamil)</label>
+          <textarea id="t-ta-desc" class="admin-textarea" placeholder="விளக்கம்..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" data-close="treatment-modal">Cancel</button>
+        <button id="save-treatment-btn" class="primary-btn"><i class="fa-solid fa-check"></i> Save Treatment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       MODAL: ADD/EDIT PACKAGE
+  ═══════════════════════════════════════ -->
+  <div id="package-modal" class="modal-overlay">
+    <div class="modal-card modal-large">
+      <div class="modal-header">
+        <h3 id="package-modal-title">Add Package</h3>
+        <button class="close-btn" data-close="package-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="lang-tabs">
+          <button class="pkg-lang-tab active" data-lang-tab="en"><span class="lang-badge">EN</span> English</button>
+          <button class="pkg-lang-tab" data-lang-tab="si"><span class="lang-badge si">SI</span> Sinhala</button>
+          <button class="pkg-lang-tab" data-lang-tab="ta"><span class="lang-badge ta">TA</span> Tamil</button>
+        </div>
+
+        <div class="pkg-lang-panel active" data-lang-panel="en">
+          <label>Label <span class="required">*</span></label>
+          <input type="text" id="p-en-label" class="admin-input" placeholder="e.g. Short Programme">
+          <label>Title <span class="required">*</span></label>
+          <input type="text" id="p-en-title" class="admin-input" placeholder="e.g. 7-Day Retreat">
+          <label>Subtitle</label>
+          <input type="text" id="p-en-sub" class="admin-input" placeholder="e.g. Initial healing & detox">
+          <label>Description</label>
+          <textarea id="p-en-desc" class="admin-textarea" placeholder="Describe this package..."></textarea>
+        </div>
+        <div class="pkg-lang-panel" data-lang-panel="si">
+          <label>Label (Sinhala)</label>
+          <input type="text" id="p-si-label" class="admin-input" placeholder="සිංහල ලේබලය">
+          <label>Title (Sinhala)</label>
+          <input type="text" id="p-si-title" class="admin-input" placeholder="සිංහල මාතෘකාව">
+          <label>Subtitle (Sinhala)</label>
+          <input type="text" id="p-si-sub" class="admin-input" placeholder="සිංහල උපමාතෘකාව">
+          <label>Description (Sinhala)</label>
+          <textarea id="p-si-desc" class="admin-textarea" placeholder="විස්තරය..."></textarea>
+        </div>
+        <div class="pkg-lang-panel" data-lang-panel="ta">
+          <label>Label (Tamil)</label>
+          <input type="text" id="p-ta-label" class="admin-input" placeholder="தமிழ் லேபிள்">
+          <label>Title (Tamil)</label>
+          <input type="text" id="p-ta-title" class="admin-input" placeholder="தமிழ் தலைப்பு">
+          <label>Subtitle (Tamil)</label>
+          <input type="text" id="p-ta-sub" class="admin-input" placeholder="தமிழ் துணைத்தலைப்பு">
+          <label>Description (Tamil)</label>
+          <textarea id="p-ta-desc" class="admin-textarea" placeholder="விளக்கம்..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" data-close="package-modal">Cancel</button>
+        <button id="save-package-btn" class="primary-btn"><i class="fa-solid fa-check"></i> Save Package</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       MODAL: DELETE CONFIRMATION
+  ═══════════════════════════════════════ -->
+  <div id="delete-modal" class="modal-overlay">
+    <div class="modal-card modal-small">
+      <div class="modal-header danger">
+        <h3><i class="fa-solid fa-triangle-exclamation"></i> Confirm Delete</h3>
+        <button class="close-btn" data-close="delete-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p id="delete-msg">Are you sure you want to delete this item? This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" data-close="delete-modal">Cancel</button>
+        <button id="confirm-delete-btn" class="danger-btn"><i class="fa-solid fa-trash"></i> Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       MODAL: REPLACE IMAGE
+  ═══════════════════════════════════════ -->
   <div id="upload-modal" class="modal-overlay">
     <div class="modal-card">
       <div class="modal-header">
         <h3>Replace Image</h3>
-        <button id="close-modal" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+        <button class="close-btn" data-close="upload-modal"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
         <p class="modal-subtitle">Replacing: <strong id="target-filename"></strong></p>
@@ -161,7 +399,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button id="cancel-upload" class="secondary-btn">Cancel</button>
+        <button class="secondary-btn" data-close="upload-modal">Cancel</button>
         <button id="confirm-upload" class="primary-btn" disabled>Upload & Replace</button>
       </div>
     </div>
