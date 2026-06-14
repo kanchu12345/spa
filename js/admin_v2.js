@@ -4,6 +4,12 @@
 const REPO='kanchu12345/spa', BRANCH='main', MAIN_JS='js/main.js';
 const DEFAULT_PW_HASH='71e53e74f9f8b46741b5105cfff33e3f67e4345cfcdd424237db8f07506088c4'; // shanthi2026
 
+const CORE_ASSETS = [
+  'logo.png', 'hero_bg.png', 'dr_profile_real.jpg', 'ayurveda_herbs_enhanced.png',
+  'treatment_therapy.png', 'herbal_medicine.png', 'treatment_room.png', 
+  'clinic_kandy_enhanced.png', 'clinic_signboard_enhanced.png'
+];
+
 /* ── Helpers ── */
 async function sha256(msg){const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(msg));return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');}
 function $(id){return document.getElementById(id);}
@@ -24,9 +30,11 @@ function saveData(d){localStorage.setItem('swm_data',JSON.stringify(d));}
 
 /* ── Init ── */
 window.addEventListener('DOMContentLoaded',()=>{
-  showDash(); // Bypass login completely
-
-
+  if(sessionStorage.getItem('swm_auth')==='1'){
+    showDash();
+  } else {
+    showLogin();
+  }
   $('login-btn').addEventListener('click', doLogin);
   $('password-input').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
   $('logout-btn').addEventListener('click',()=>{sessionStorage.removeItem('swm_auth');showLogin();});
@@ -345,10 +353,27 @@ async function loadImages(){
 
 function getCat(name){
   name=name.toLowerCase();
+  if(CORE_ASSETS.includes(name)) return 'core';
   if(name.includes('gallery_'))return 'gallery';
   if(name.includes('dr_')||name.includes('doctor'))return 'doctor';
   if(name.includes('treatment')||name.includes('herb')||name.includes('clinic'))return 'treatments';
+  if(name.includes('product'))return 'products';
   return 'general';
+}
+
+function getCoreLabel(name) {
+  const map = {
+    'logo.png': 'Main Website Logo',
+    'hero_bg.png': 'Top Hero Background',
+    'dr_profile_real.jpg': 'Doctor Profile Image',
+    'ayurveda_herbs_enhanced.png': 'Treatment Section Graphic',
+    'treatment_therapy.png': 'Treatment Section Graphic',
+    'herbal_medicine.png': 'Treatment Section Graphic',
+    'treatment_room.png': 'Treatment Section Graphic',
+    'clinic_kandy_enhanced.png': 'Treatment Section Graphic',
+    'clinic_signboard_enhanced.png': 'Clinic Signboard Graphic'
+  };
+  return map[name] || 'Core System Image';
 }
 
 function renderImages(){
@@ -357,8 +382,11 @@ function renderImages(){
   if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#888;padding:40px 0;">No images in this category.</p>';return;}
   list.forEach(img=>{
     const card=document.createElement('div');card.className='image-card';
+    const isCore = getCat(img.name) === 'core';
+    const badge = isCore ? `<span style="display:inline-block;background:#d9534f;color:#fff;font-size:0.7rem;padding:2px 6px;border-radius:4px;margin-bottom:5px;font-weight:600;"><i class="fa-solid fa-triangle-exclamation"></i> ${getCoreLabel(img.name)}</span><br>` : '';
+    
     card.innerHTML=`<div class="img-wrapper"><img src="${img.download_url}" alt="${img.name}" loading="lazy"></div>
-    <div class="img-info"><p class="img-name">${img.name}</p><p class="img-size">${(img.size/1024).toFixed(1)} KB</p>
+    <div class="img-info">${badge}<p class="img-name">${img.name}</p><p class="img-size">${(img.size/1024).toFixed(1)} KB</p>
     <button class="replace-btn" data-sha="${img.sha}" data-name="${img.name}"><i class="fa-solid fa-upload"></i> Replace</button></div>`;
     grid.appendChild(card);
   });
@@ -508,7 +536,8 @@ async function publishToGithub(){
     const imgRes=await fetch(`https://api.github.com/repos/${REPO}/contents/images`,{headers:{Authorization:`Bearer ${ghToken}`}});
     if(!imgRes.ok)throw new Error('Could not fetch images list from GitHub');
     const imgData=await imgRes.json();
-    const publicImages=imgData.filter(f=>f.type==='file'&&/\.(jpg|jpeg|png|gif|webp)$/i.test(f.name)).map(f=>({name:f.name, category:getCat(f.name)}));
+    // EXCLUDE 'core' assets from public gallery!
+    const publicImages=imgData.filter(f=>f.type==='file'&&/\.(jpg|jpeg|png|gif|webp)$/i.test(f.name)&&getCat(f.name)!=='core').map(f=>({name:f.name, category:getCat(f.name)}));
     const galleryJson=JSON.stringify(publicImages);
 
     // Fetch current main.js
