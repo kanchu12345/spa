@@ -378,6 +378,13 @@ function getCoreLabel(name) {
 
 function renderImages(){
   const grid=$('image-grid');grid.innerHTML='';
+  
+  const warningBox = $('core-assets-warning');
+  if (warningBox) {
+    if (currentCat === 'core') warningBox.classList.remove('hidden');
+    else warningBox.classList.add('hidden');
+  }
+
   const list=currentCat==='all'?imagesList:imagesList.filter(i=>getCat(i.name)===currentCat);
   if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#888;padding:40px 0;">No images in this category.</p>';return;}
   list.forEach(img=>{
