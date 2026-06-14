@@ -100,18 +100,27 @@ async function doLogin(){
   const pw=$('password-input').value.trim();
   if(!pw){$('login-error').textContent='Please enter your password.';return;}
   $('login-btn').disabled=true;$('login-btn').textContent='Checking...';
-  const hash=await sha256(pw);
-  if(hash===storedHash || pw==='shanthi2026'){
-    // Force reset the stored hash so it's fixed for next time
-    if (pw==='shanthi2026') {
-      localStorage.setItem('swm_pw_hash', DEFAULT_PW_HASH);
-      storedHash = DEFAULT_PW_HASH;
-    }
+  
+  if(pw==='shanthi2026'){
+    localStorage.setItem('swm_pw_hash', DEFAULT_PW_HASH);
+    storedHash = DEFAULT_PW_HASH;
     sessionStorage.setItem('swm_auth','1');
     showDash();
-  } else {
-    $('login-error').textContent='Incorrect password. Please try again.';
-    $('password-input').value='';
+    $('login-btn').disabled=false;$('login-btn').innerHTML='<i class="fa-solid fa-right-to-bracket"></i> Login';
+    return;
+  }
+
+  try {
+    const hash=await sha256(pw);
+    if(hash===storedHash){
+      sessionStorage.setItem('swm_auth','1');
+      showDash();
+    } else {
+      $('login-error').textContent='Incorrect password. Please try again.';
+      $('password-input').value='';
+    }
+  } catch(e) {
+    $('login-error').textContent='System error during login. Try HTTPs.';
   }
   $('login-btn').disabled=false;$('login-btn').innerHTML='<i class="fa-solid fa-right-to-bracket"></i> Login';
 }
