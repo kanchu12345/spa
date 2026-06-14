@@ -88,8 +88,10 @@ window.addEventListener('DOMContentLoaded',()=>{
   $('publish-btn').addEventListener('click', publishToGithub);
 
   // Gallery
+  $('add-image-btn').addEventListener('click', () => { resetNewUpload(); openModal('add-image-modal'); });
   $('refresh-images-btn').addEventListener('click', loadImages);
   initUploadModal();
+  initNewUploadModal();
 
   // Preload settings field
   if(ghToken) $('settings-gh-token').value=ghToken;
@@ -411,6 +413,52 @@ async function doUpload(){
   finally{btn.disabled=false;btn.innerHTML='Upload & Replace';}
 }
 
+/* ── Add New Image Modal ── */
+let newBase64File=null;
+function initNewUploadModal(){
+  const area=$('new-upload-area'),inp=$('new-file-input');
+  area.addEventListener('click',()=>inp.click());
+  area.addEventListener('dragover',e=>{e.preventDefault();area.classList.add('dragover');});
+  area.addEventListener('dragleave',()=>area.classList.remove('dragover'));
+  area.addEventListener('drop',e=>{e.preventDefault();area.classList.remove('dragover');if(e.dataTransfer.files[0])handleNewFile(e.dataTransfer.files[0]);});
+  inp.addEventListener('change',e=>{if(e.target.files[0])handleNewFile(e.target.files[0]);});
+  $('new-remove-preview').addEventListener('click',resetNewUpload);
+  $('confirm-add-image').addEventListener('click',doAddImage);
+}
+function handleNewFile(f){
+  if(!f.type.match('image.*')){showToast('Please select an image.','error');return;}
+  if(f.size>3*1024*1024){showToast('Max file size is 3MB.','error');return;}
+  const r=new FileReader();
+  r.onload=e=>{
+    $('new-image-preview').src=e.target.result;newBase64File=e.target.result.split(',')[1];
+    $('new-file-details').textContent=`${f.name} (${(f.size/1024).toFixed(1)} KB)`;
+    $('new-upload-area').classList.add('hidden');$('new-preview-container').classList.remove('hidden');
+    $('confirm-add-image').disabled=false;
+  };r.readAsDataURL(f);
+}
+function resetNewUpload(){
+  $('new-file-input').value='';newBase64File=null;$('new-image-preview').src='';$('new-file-details').textContent='';
+  $('new-upload-area').classList.remove('hidden');$('new-preview-container').classList.add('hidden');
+  $('confirm-add-image').disabled=true;
+}
+async function doAddImage(){
+  if(!newBase64File)return;
+  const btn=$('confirm-add-image');btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Uploading...';
+  const cat = $('new-image-category').value;
+  const randomStr = Math.random().toString(36).substring(2, 8);
+  const ext = $('new-file-details').textContent.toLowerCase().includes('.png') ? '.png' : '.jpg';
+  const newName = `${cat}_custom_${Date.now()}_${randomStr}${ext}`;
+  try{
+    const r=await fetch(`https://api.github.com/repos/${REPO}/contents/images/${newName}`,{
+      method:'PUT',headers:{'Authorization':`Bearer ${ghToken}`,'Content-Type':'application/json'},
+      body:JSON.stringify({message:`Admin: Add new image ${newName}`,content:newBase64File,branch:BRANCH})
+    });
+    if(!r.ok)throw new Error('Upload failed');
+    showToast('Image uploaded successfully!');closeModal('add-image-modal');loadImages();
+  }catch(e){showToast(e.message,'error');}
+  finally{btn.disabled=false;btn.innerHTML='Upload Image';}
+}
+
 /* ═══════════════════════════════
    SETTINGS
 ═══════════════════════════════ */
@@ -456,12 +504,27 @@ async function publishToGithub(){
   setStatus('publish-status','Fetching current main.js...','');
   try{
     const d=getData();
+    setStatus('publish-status','Fetching images list...','');
+    const imgRes=await fetch(`https://api.github.com/repos/${REPO}/contents/images`,{headers:{Authorization:`Bearer ${ghToken}`}});
+    if(!imgRes.ok)throw new Error('Could not fetch images list from GitHub');
+    const imgData=await imgRes.json();
+    const publicImages=imgData.filter(f=>f.type==='file'&&/\.(jpg|jpeg|png|gif|webp)$/i.test(f.name)).map(f=>({name:f.name, category:getCat(f.name)}));
+    const galleryJson=JSON.stringify(publicImages);
+
     // Fetch current main.js
     const fetchRes=await fetch(`https://api.github.com/repos/${REPO}/contents/${MAIN_JS}?ref=${BRANCH}`,{headers:{Authorization:`Bearer ${ghToken}`}});
     if(!fetchRes.ok)throw new Error('Could not fetch main.js from GitHub');
     const fileData=await fetchRes.json();
     mainJsSha=fileData.sha;
     let content=b64Dec(fileData.content);
+
+    // Inject SWM_GALLERY_IMAGES
+    const reGallery = /const SWM_GALLERY_IMAGES\s*=\s*\[.*?\];/s;
+    if(reGallery.test(content)){
+      content = content.replace(reGallery, `const SWM_GALLERY_IMAGES = ${galleryJson};`);
+    } else {
+      content = `const SWM_GALLERY_IMAGES = ${galleryJson};\n` + content;
+    }
 
     // Patch treatment keys into each language block
     ['en','si','ta'].forEach(lang=>{

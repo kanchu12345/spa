@@ -943,6 +943,57 @@ function initGalleryFilters() {
   });
 }
 
+// ── Dynamic Gallery ────────────────────────────
+function initDynamicGallery() {
+  const grid = document.querySelector('.full-gallery-grid');
+  if (!grid || typeof SWM_GALLERY_IMAGES === 'undefined') return;
+  
+  grid.innerHTML = ''; // Clear fallback images
+  let html = '';
+  
+  SWM_GALLERY_IMAGES.forEach((img, index) => {
+    // Add span2 class to the first image of the gallery and general categories to keep the design
+    let extraClass = '';
+    if (img.category === 'gallery' && index === 0) extraClass = ' span2';
+    if (img.category === 'general' && index === SWM_GALLERY_IMAGES.length - 1) extraClass = ' span2';
+    if (img.category === 'doctor' && index === SWM_GALLERY_IMAGES.length - 2) extraClass = ' span2';
+    
+    html += `
+      <div class="gal-item public-gal-item${extraClass}" data-category="${img.category}">
+        <img src="images/${img.name}" alt="${img.name}" loading="lazy">
+        <div class="gal-overlay"><span class="gal-overlay-icon"><i class="fa-solid fa-expand"></i></span></div>
+      </div>
+    `;
+  });
+  
+  grid.innerHTML = html;
+  
+  // Re-initialize modal listeners for new images
+  if (typeof initGalleryModal === 'function') {
+    initGalleryModal(); // Will attach click listeners
+  } else {
+    // Basic fallback if initGalleryModal isn't global
+    grid.querySelectorAll('.gal-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const modal = document.getElementById('img-modal');
+        const img = document.getElementById('img-modal-content');
+        if (modal && img) {
+          img.src = item.querySelector('img').src;
+          modal.classList.add('active');
+        }
+      });
+    });
+    const modalClose = document.getElementById('close-modal');
+    const modal = document.getElementById('img-modal');
+    if (modalClose && modal) {
+      modalClose.addEventListener('click', () => modal.classList.remove('active'));
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+      });
+    }
+  }
+}
+
 // ── Init ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
@@ -956,6 +1007,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initActiveNavLink();
   initPackageToggles();
   initTestimonials();
+  initDynamicGallery();
   initGalleryFilters();
 
   // Restore saved language

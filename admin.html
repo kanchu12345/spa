@@ -193,6 +193,7 @@
               <button class="cat-btn" data-cat="treatments">Treatments</button>
               <button class="cat-btn" data-cat="general">General</button>
             </div>
+            <button id="add-image-btn" class="primary-btn" style="margin-right:8px;"><i class="fa-solid fa-plus"></i> Add Image</button>
             <button id="refresh-images-btn" class="secondary-btn"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
           </div>
         </div>
@@ -401,6 +402,43 @@
       <div class="modal-footer">
         <button class="secondary-btn" data-close="upload-modal">Cancel</button>
         <button id="confirm-upload" class="primary-btn" disabled>Upload & Replace</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       MODAL: ADD NEW IMAGE
+  ═══════════════════════════════════════ -->
+  <div id="add-image-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Add New Image</h3>
+        <button class="close-btn" data-close="add-image-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <label>Select Category <span class="required">*</span></label>
+        <select id="new-image-category" class="admin-input" style="margin-bottom: 15px;">
+          <option value="gallery">Gallery</option>
+          <option value="doctor">Doctor & Awards</option>
+          <option value="treatments">Treatments</option>
+          <option value="products">Products</option>
+          <option value="general">General</option>
+        </select>
+        
+        <div class="upload-area" id="new-upload-area">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <p>Drag & Drop a new image here or click to browse</p>
+          <input type="file" id="new-file-input" accept="image/png, image/jpeg, image/jpg" hidden>
+        </div>
+        <div id="new-preview-container" class="preview-container hidden">
+          <img id="new-image-preview" src="" alt="Preview">
+          <p id="new-file-details"></p>
+          <button id="new-remove-preview" class="remove-btn"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" data-close="add-image-modal">Cancel</button>
+        <button id="confirm-add-image" class="primary-btn" disabled>Upload Image</button>
       </div>
     </div>
   </div>
