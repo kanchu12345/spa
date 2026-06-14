@@ -22,7 +22,7 @@ img { max-width: 100%; display: block; }
 .admin-section.active { display: block; }
 
 /* ═══ LOGIN ═══ */
-#login-section { display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--a-maroon), #2d1810); }
+#login-section { display: none; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--a-maroon), #2d1810); }
 #login-section.active { display: flex; }
 .login-card { background: var(--a-card); padding: 44px 36px; border-radius: 16px; box-shadow: var(--shadow-md); text-align: center; max-width: 400px; width: 92%; }
 .admin-logo { height: 72px; margin: 0 auto 18px; }
