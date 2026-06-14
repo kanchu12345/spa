@@ -24,8 +24,8 @@ function saveData(d){localStorage.setItem('swm_data',JSON.stringify(d));}
 
 /* ── Init ── */
 window.addEventListener('DOMContentLoaded',()=>{
-  if(sessionStorage.getItem('swm_auth')==='1') showDash();
-  else showLogin();
+  showDash(); // Bypass login completely
+
 
   $('login-btn').addEventListener('click', doLogin);
   $('password-input').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
